@@ -4,97 +4,465 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>O Level Project - Resume | Created by Awanish Singh</title>
-  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #284B63;
+      --secondary: #3C6E71;
+      --background: #f2f2f2;
+      --white: #fff;
+      --accent: #d9d9d9;
+      --highlight: #353535;
+      --radius: 12px;
+      --shadow: 0 8px 24px rgba(40, 75, 99, 0.08);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: var(--background);
+      color: var(--highlight);
+      min-height: 100vh;
+      padding: 40px 0;
+    }
+    .resume-container {
+      max-width: 800px;
+      margin: 40px auto 20px;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 36px 38px 20px 38px;
+      transition: box-shadow 0.3s;
+    }
+    header, section, footer {
+      margin-bottom: 32px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    h1 {
+      color: var(--primary);
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    h2 {
+      color: var(--secondary);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      border-left: 4px solid var(--primary);
+      padding-left: 10px;
+      margin-top: 24px;
+    }
+    h3 {
+      color: var(--primary);
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .subtext {
+      color: #666;
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+    ul, .skill-bar {
+      margin-bottom: 10px;
+    }
+    ul {
+      list-style: disc inside;
+      margin-left: 10px;
+    }
+    .contact ul li,
+    .education p,
+    .projects .project p,
+    .job ul li {
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+    .skills .skill-bar {
+      margin-bottom: 12px;
+    }
+    .skills .bar {
+      background: var(--accent);
+      border-radius: 8px;
+      height: 12px;
+      width: 100%;
+      margin-bottom: 2px;
+      overflow: hidden;
+      box-shadow: 0 1px 2px #eee;
+    }
+    .skills .bar span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--secondary) 60%, var(--primary) 100%);
+      border-radius: 8px;
+      transition: width 0.5s;
+    }
+    .job {
+      margin-bottom: 18px;
+    }
+    .project {
+      margin-bottom: 15px;
+    }
+    /* Form Styling */
+    .edit-form {
+      margin-bottom: 36px;
+      padding: 24px 18px;
+      background: #f6f8fa;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 12px #eee;
+    }
+    .edit-form label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 2px;
+      color: var(--secondary);
+    }
+    .edit-form input,
+    .edit-form textarea,
+    .edit-form select {
+      width: 100%;
+      margin-bottom: 14px;
+      padding: 7px 10px;
+      border: 1px solid #d2d2d2;
+      border-radius: 6px;
+      font-size: 1rem;
+      background: #fff;
+      transition: border 0.2s;
+    }
+    .edit-form input:focus, .edit-form textarea:focus {
+      border: 1.5px solid var(--primary);
+      outline: none;
+    }
+    .edit-form .form-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .edit-form .form-row > div {
+      flex: 1;
+      min-width: 180px;
+    }
+    .form-section {
+      margin-bottom: 20px;
+    }
+    .form-action-btns {
+      text-align: right;
+    }
+    .form-action-btns button {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 6px;
+      font-size: 1rem;
+      margin-left: 12px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .form-action-btns button:hover {
+      background: var(--secondary);
+    }
+    /* Action buttons */
+    .bottom-actions {
+      display: flex;
+      gap: 18px;
+      justify-content: flex-end;
+      margin-top: 30px;
+    }
+    .bottom-actions button {
+      background: var(--secondary);
+      color: #fff;
+      border: none;
+      padding: 13px 36px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px #e3e3e3;
+    }
+    .bottom-actions button:hover {
+      background: var(--primary);
+    }
+    footer {
+      text-align: center;
+      color: #bbb;
+      font-size: 1rem;
+    }
+    @media (max-width: 600px) {
+      .resume-container {
+        padding: 18px 3vw;
+      }
+      .edit-form {
+        padding: 12px 3vw;
+      }
+      .bottom-actions {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="profile">
-      <img src="images/profile.jpg" alt="Profile Photo" />
-      <h1>Awanish Singh</h1>
-      <h3>Frontend Developer</h3>
-      <p>Passionate about building clean, responsive, and user-friendly web interfaces.</p>
-    </div>
-  </header>
+  <div class="resume-container">
+    <!-- Resume Edit Form -->
+    <form id="resumeForm" class="edit-form">
+      <!-- Header Info -->
+      <div class="form-section">
+        <div class="form-row">
+          <div><label for="name">Name</label><input type="text" id="name" required></div>
+          <div><label for="title">Title</label><input type="text" id="title" required></div>
+        </div>
+        <label for="summary">Summary</label>
+        <textarea id="summary" rows="2" required></textarea>
+      </div>
+      <!-- Contact -->
+      <div class="form-section">
+        <div class="form-row">
+          <div><label for="email">Email</label><input type="email" id="email" required></div>
+          <div><label for="phone">Phone</label><input type="text" id="phone" required></div>
+        </div>
+        <div class="form-row">
+          <div><label for="linkedin">LinkedIn</label><input type="text" id="linkedin"></div>
+          <div><label for="github">GitHub</label><input type="text" id="github"></div>
+        </div>
+      </div>
+      <!-- Skills -->
+      <div class="form-section">
+        <label for="skills">Skills (comma separated, e.g. HTML:90, CSS:85, JavaScript:70)</label>
+        <input type="text" id="skills" placeholder="Skill:Level, ..." required>
+      </div>
+      <!-- Experience -->
+      <div class="form-section">
+        <label>Work Experience</label>
+        <div id="experienceInputs"></div>
+        <button type="button" onclick="addExperience()">Add Experience</button>
+      </div>
+      <!-- Education -->
+      <div class="form-section">
+        <label>Education</label>
+        <div id="educationInputs"></div>
+        <button type="button" onclick="addEducation()">Add Education</button>
+      </div>
+      <!-- Projects -->
+      <div class="form-section">
+        <label>Projects</label>
+        <div id="projectInputs"></div>
+        <button type="button" onclick="addProject()">Add Project</button>
+      </div>
+      <div class="form-action-btns">
+        <button type="submit">Generate Resume</button>
+      </div>
+    </form>
 
-  <!-- Contact Info -->
-  <section class="contact">
-    <h2>Contact</h2>
-    <ul>
-      <li>Email: awanish@example.com</li>
-      <li>Phone: +91 98765 43210</li>
-      <li>LinkedIn: linkedin.com/in/awanish</li>
-      <li>GitHub: github.com/awanish</li>
-    </ul>
-  </section>
+    <!-- Resume Display -->
+    <div id="resumeView" style="display:none;">
+      <header>
+        <h1 id="viewName"></h1>
+        <h3 id="viewTitle"></h3>
+        <p class="subtext" id="viewSummary"></p>
+      </header>
+      <section class="contact">
+        <h2>Contact</h2>
+        <ul id="viewContact"></ul>
+      </section>
+      <section class="skills">
+        <h2>Skills</h2>
+        <div id="viewSkills"></div>
+      </section>
+      <section class="experience">
+        <h2>Work Experience</h2>
+        <div id="viewExperience"></div>
+      </section>
+      <section class="education">
+        <h2>Education</h2>
+        <div id="viewEducation"></div>
+      </section>
+      <section class="projects">
+        <h2>Projects</h2>
+        <div id="viewProjects"></div>
+      </section>
+      <div class="bottom-actions">
+        <button type="button" onclick="editResume()">Create New Resume</button>
+        <button type="button" onclick="window.print()">Download Resume PDF</button>
+      </div>
+    </div>
+    <footer>
+      <p>© 2025 | O Level Project | Created by <strong>Awanish Singh</strong></p>
+    </footer>
+  </div>
+  <script>
+    // Dynamic Fields
+    let experienceCount = 0, educationCount = 0, projectCount = 0;
 
-  <!-- Skills -->
-  <section class="skills">
-    <h2>Skills</h2>
-    <div class="skill-bar">
-      <p>HTML</p>
-      <div class="bar"><span style="width: 90%"></span></div>
-    </div>
-    <div class="skill-bar">
-      <p>CSS</p>
-      <div class="bar"><span style="width: 85%"></span></div>
-    </div>
-    <div class="skill-bar">
-      <p>JavaScript</p>
-      <div class="bar"><span style="width: 70%"></span></div>
-    </div>
-    <div class="skill-bar">
-      <p>React</p>
-      <div class="bar"><span style="width: 60%"></span></div>
-    </div>
-  </section>
+    function addExperience(vals = {}) {
+      experienceCount++;
+      const div = document.createElement('div');
+      div.className = 'exp-item';
+      div.innerHTML = `
+        <div class="form-row">
+          <div>
+            <label>Job Title</label>
+            <input type="text" name="expTitle${experienceCount}" value="${vals.title || ''}" required>
+          </div>
+          <div>
+            <label>Company</label>
+            <input type="text" name="expCompany${experienceCount}" value="${vals.company || ''}" required>
+          </div>
+          <div>
+            <label>Duration</label>
+            <input type="text" name="expDuration${experienceCount}" value="${vals.duration || ''}" required>
+          </div>
+        </div>
+        <label>Details (comma separated)</label>
+        <input type="text" name="expDetails${experienceCount}" value="${vals.details || ''}" required>
+        <button type="button" onclick="this.parentNode.remove()">Remove</button>
+      `;
+      document.getElementById('experienceInputs').appendChild(div);
+    }
+    function addEducation(vals = {}) {
+      educationCount++;
+      const div = document.createElement('div');
+      div.className = 'edu-item';
+      div.innerHTML = `
+        <div class="form-row">
+          <div>
+            <label>Degree</label>
+            <input type="text" name="eduDegree${educationCount}" value="${vals.degree || ''}" required>
+          </div>
+          <div>
+            <label>Institute</label>
+            <input type="text" name="eduInstitute${educationCount}" value="${vals.institute || ''}" required>
+          </div>
+          <div>
+            <label>Year</label>
+            <input type="text" name="eduYear${educationCount}" value="${vals.year || ''}" required>
+          </div>
+        </div>
+        <button type="button" onclick="this.parentNode.remove()">Remove</button>
+      `;
+      document.getElementById('educationInputs').appendChild(div);
+    }
+    function addProject(vals = {}) {
+      projectCount++;
+      const div = document.createElement('div');
+      div.className = 'proj-item';
+      div.innerHTML = `
+        <div class="form-row">
+          <div>
+            <label>Project Title</label>
+            <input type="text" name="projTitle${projectCount}" value="${vals.title || ''}" required>
+          </div>
+        </div>
+        <label>Description</label>
+        <input type="text" name="projDesc${projectCount}" value="${vals.desc || ''}" required>
+        <button type="button" onclick="this.parentNode.remove()">Remove</button>
+      `;
+      document.getElementById('projectInputs').appendChild(div);
+    }
 
-  <!-- Experience -->
-  <section class="experience">
-    <h2>Work Experience</h2>
-    <div class="job">
-      <h3>Frontend Developer</h3>
-      <p><strong>ABC Tech</strong> | 2021 - Present</p>
-      <ul>
-        <li>Developed responsive websites using HTML, CSS, JavaScript.</li>
-        <li>Worked closely with designers to implement UI/UX improvements.</li>
-      </ul>
-    </div>
-    <div class="job">
-      <h3>Web Designer Intern</h3>
-      <p><strong>XYZ Web Studio</strong> | 2020 - 2021</p>
-      <ul>
-        <li>Created mockups and converted them into functional pages.</li>
-        <li>Enhanced SEO and optimized website performance.</li>
-      </ul>
-    </div>
-  </section>
+    // Preload one empty field for each
+    window.onload = () => {
+      if (!experienceCount) addExperience();
+      if (!educationCount) addEducation();
+      if (!projectCount) addProject();
+    };
 
-  <!-- Education -->
-  <section class="education">
-    <h2>Education</h2>
-    <p><strong>B.Tech in Computer Science</strong> - AKTU University (2016 - 2020)</p>
-    <p><strong>Class XII</strong> - CBSE Board (2014 - 2016)</p>
-  </section>
+    // Resume Data Fill
+    document.getElementById('resumeForm').onsubmit = function(e) {
+      e.preventDefault();
+      // Header
+      document.getElementById('viewName').textContent = document.getElementById('name').value;
+      document.getElementById('viewTitle').textContent = document.getElementById('title').value;
+      document.getElementById('viewSummary').textContent = document.getElementById('summary').value;
+      // Contact
+      const contact = [
+        { label: 'Email', value: document.getElementById('email').value },
+        { label: 'Phone', value: document.getElementById('phone').value },
+        { label: 'LinkedIn', value: document.getElementById('linkedin').value },
+        { label: 'GitHub', value: document.getElementById('github').value }
+      ];
+      document.getElementById('viewContact').innerHTML = contact.filter(c => c.value).map(c => `<li>${c.label}: ${c.value}</li>`).join('');
+      // Skills
+      const skillsRaw = document.getElementById('skills').value;
+      const skills = skillsRaw.split(',').map(s => {
+        const [name, level] = s.trim().split(':');
+        return { name: name?.trim(), level: parseInt(level) || 60 };
+      }).filter(s => s.name);
+      document.getElementById('viewSkills').innerHTML = skills.map(skill => `
+          <div class="skill-bar">
+            <p>${skill.name}</p>
+            <div class="bar"><span style="width: ${skill.level}%"></span></div>
+          </div>
+      `).join('');
+      // Experience
+      const expDivs = document.querySelectorAll('#experienceInputs .exp-item');
+      const exps = Array.from(expDivs).map(div => {
+        const title = div.querySelector('input[name^="expTitle"]').value;
+        const company = div.querySelector('input[name^="expCompany"]').value;
+        const duration = div.querySelector('input[name^="expDuration"]').value;
+        const details = div.querySelector('input[name^="expDetails"]').value.split(',').map(d => d.trim()).filter(d => d);
+        return { title, company, duration, details };
+      });
+      document.getElementById('viewExperience').innerHTML = exps.map(exp => `
+        <div class="job">
+          <h3>${exp.title}</h3>
+          <p><strong>${exp.company}</strong> | ${exp.duration}</p>
+          <ul>${exp.details.map(det => `<li>${det}</li>`).join('')}</ul>
+        </div>
+      `).join('');
+      // Education
+      const eduDivs = document.querySelectorAll('#educationInputs .edu-item');
+      const edus = Array.from(eduDivs).map(div => {
+        const degree = div.querySelector('input[name^="eduDegree"]').value;
+        const institute = div.querySelector('input[name^="eduInstitute"]').value;
+        const year = div.querySelector('input[name^="eduYear"]').value;
+        return { degree, institute, year };
+      });
+      document.getElementById('viewEducation').innerHTML = edus.map(edu => `
+        <p><strong>${edu.degree}</strong> - ${edu.institute} (${edu.year})</p>
+      `).join('');
+      // Projects
+      const projDivs = document.querySelectorAll('#projectInputs .proj-item');
+      const projs = Array.from(projDivs).map(div => {
+        const title = div.querySelector('input[name^="projTitle"]').value;
+        const desc = div.querySelector('input[name^="projDesc"]').value;
+        return { title, desc };
+      });
+      document.getElementById('viewProjects').innerHTML = projs.map(proj => `
+        <div class="project">
+          <h3>${proj.title}</h3>
+          <p>${proj.desc}</p>
+        </div>
+      `).join('');
+      // Show view, hide form
+      document.getElementById('resumeForm').style.display = 'none';
+      document.getElementById('resumeView').style.display = '';
+      window.scrollTo(0,0);
+    };
 
-  <!-- Projects -->
-  <section class="projects">
-    <h2>Projects</h2>
-    <div class="project">
-      <h3>Portfolio Website</h3>
-      <p>A personal portfolio built with HTML, CSS, and JavaScript showcasing my work.</p>
-    </div>
-    <div class="project">
-      <h3>E-commerce Landing Page</h3>
-      <p>Designed a fully responsive product landing page with pricing table and testimonials.</p>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 | O Level Project | Created by <strong>Awanish Singh</strong></p>
-    <button onclick="window.print()">Download Resume (PDF)</button>
-  </footer>
+    function editResume() {
+      // Reset all
+      document.getElementById('resumeForm').reset();
+      document.getElementById('resumeForm').style.display = '';
+      document.getElementById('resumeView').style.display = 'none';
+      // Remove dynamic fields
+      document.getElementById('experienceInputs').innerHTML = '';
+      document.getElementById('educationInputs').innerHTML = '';
+      document.getElementById('projectInputs').innerHTML = '';
+      experienceCount = educationCount = projectCount = 0;
+      addExperience();
+      addEducation();
+      addProject();
+      window.scrollTo(0,0);
+    }
+  </script>
 </body>
 </html>
