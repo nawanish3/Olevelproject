@@ -7,14 +7,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #284B63;
-      --secondary: #3C6E71;
-      --background: #f2f2f2;
-      --white: #fff;
-      --accent: #d9d9d9;
-      --highlight: #353535;
-      --radius: 12px;
-      --shadow: 0 8px 24px rgba(40, 75, 99, 0.08);
+      --primary: #1d3557;
+      --secondary: #457b9d;
+      --accent: #f1faee;
+      --background: #f8fafc;
+      --highlight: #22223b;
+      --gradient: linear-gradient(90deg, #a8dadc 0%, #457b9d 100%);
+      --radius: 16px;
+      --shadow: 0 6px 30px 0 rgba(69, 123, 157, 0.13);
+      --input-focus: #a8dadc;
+      --form-bg: #f1faee;
+      --danger: #e63946;
     }
     * {
       box-sizing: border-box;
@@ -26,49 +29,90 @@
       background: var(--background);
       color: var(--highlight);
       min-height: 100vh;
-      padding: 40px 0;
+      padding: 32px 0;
+      animation: fadeIn 0.7s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
     .resume-container {
-      max-width: 800px;
-      margin: 40px auto 20px;
-      background: var(--white);
+      max-width: 820px;
+      margin: 42px auto 20px;
+      background: var(--accent);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 36px 38px 20px 38px;
+      padding: 38px 42px 26px 42px;
       transition: box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .resume-container::before {
+      content: "";
+      position: absolute;
+      top: -80px; left: -80px;
+      width: 220px; height: 220px;
+      background: var(--gradient);
+      opacity: 0.18;
+      border-radius: 50%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .project-credit {
+      margin-bottom: 22px;
+      background: var(--gradient);
+      color: #fff;
+      padding: 12px 0 12px 0;
+      border-radius: 0 0 var(--radius) var(--radius);
+      text-align: center;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      box-shadow: 0 1px 8px #bde0fe;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 1px 2px #3333;
     }
     header, section, footer {
       margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
     }
     header {
       text-align: center;
-      margin-bottom: 36px;
+      margin-bottom: 40px;
     }
     h1 {
       color: var(--primary);
-      font-size: 2.4rem;
+      font-size: 2.6rem;
       font-weight: 700;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 0 #eaf6fb;
     }
     h2 {
       color: var(--secondary);
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       font-weight: 600;
-      margin-bottom: 12px;
+      margin-bottom: 13px;
       border-left: 4px solid var(--primary);
-      padding-left: 10px;
-      margin-top: 24px;
+      padding-left: 13px;
+      margin-top: 28px;
+      background: linear-gradient(90deg, #f1faee 80%, #eaf6fb 100%);
+      border-radius: 5px;
+      box-shadow: 0 1px 3px #eaf6fb;
     }
     h3 {
       color: var(--primary);
-      font-size: 1.1rem;
+      font-size: 1.13rem;
       font-weight: 500;
-      margin-bottom: 4px;
+      margin-bottom: 5px;
     }
     .subtext {
-      color: #666;
-      font-size: 1rem;
-      margin-bottom: 12px;
+      color: #555;
+      font-size: 1.04rem;
+      margin-bottom: 15px;
+      font-style: italic;
     }
     ul, .skill-bar {
       margin-bottom: 10px;
@@ -81,16 +125,16 @@
     .education p,
     .projects .project p,
     .job ul li {
-      font-size: 1rem;
+      font-size: 1.01rem;
       margin-bottom: 4px;
     }
     .skills .skill-bar {
-      margin-bottom: 12px;
+      margin-bottom: 13px;
     }
     .skills .bar {
-      background: var(--accent);
+      background: #eaf6fb;
       border-radius: 8px;
-      height: 12px;
+      height: 13px;
       width: 100%;
       margin-bottom: 2px;
       overflow: hidden;
@@ -101,43 +145,50 @@
       height: 100%;
       background: linear-gradient(90deg, var(--secondary) 60%, var(--primary) 100%);
       border-radius: 8px;
-      transition: width 0.5s;
+      transition: width 0.7s cubic-bezier(.6,2,.3,.7);
+      box-shadow: 0 1px 4px #bde0fe inset;
     }
     .job {
-      margin-bottom: 18px;
+      margin-bottom: 21px;
     }
     .project {
-      margin-bottom: 15px;
+      margin-bottom: 17px;
     }
     /* Form Styling */
     .edit-form {
-      margin-bottom: 36px;
-      padding: 24px 18px;
-      background: #f6f8fa;
+      margin-bottom: 40px;
+      padding: 27px 20px 15px 20px;
+      background: var(--form-bg);
       border-radius: var(--radius);
-      box-shadow: 0 2px 12px #eee;
+      box-shadow: 0 2px 12px #d7e6f6;
+      animation: fadeIn 0.6s;
     }
     .edit-form label {
       display: block;
       font-weight: 500;
       margin-bottom: 2px;
       color: var(--secondary);
+      letter-spacing: .2px;
     }
     .edit-form input,
     .edit-form textarea,
     .edit-form select {
       width: 100%;
-      margin-bottom: 14px;
-      padding: 7px 10px;
-      border: 1px solid #d2d2d2;
-      border-radius: 6px;
-      font-size: 1rem;
+      margin-bottom: 16px;
+      padding: 9px 13px;
+      border: 1.5px solid #d2d2d2;
+      border-radius: 7px;
+      font-size: 1.07rem;
       background: #fff;
-      transition: border 0.2s;
+      transition: border 0.24s, box-shadow 0.23s;
+      box-shadow: 0 1px 6px #f1faee inset;
     }
-    .edit-form input:focus, .edit-form textarea:focus {
-      border: 1.5px solid var(--primary);
+    .edit-form input:focus, 
+    .edit-form textarea:focus,
+    .edit-form select:focus {
+      border-color: var(--input-focus);
       outline: none;
+      box-shadow: 0 0 0 2px #bde0fe;
     }
     .edit-form .form-row {
       display: flex;
@@ -146,74 +197,118 @@
     }
     .edit-form .form-row > div {
       flex: 1;
-      min-width: 180px;
+      min-width: 170px;
     }
     .form-section {
-      margin-bottom: 20px;
+      margin-bottom: 19px;
+      border-bottom: 1px solid #eaf6fb;
+      padding-bottom: 11px;
+    }
+    .form-section:last-child {
+      border-bottom: none;
     }
     .form-action-btns {
       text-align: right;
+      margin-top: 9px;
     }
     .form-action-btns button {
       background: var(--primary);
       color: #fff;
       border: none;
-      padding: 12px 28px;
-      border-radius: 6px;
-      font-size: 1rem;
-      margin-left: 12px;
+      padding: 13px 35px;
+      border-radius: 7px;
+      font-size: 1.06rem;
+      margin-left: 14px;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.18s;
+      box-shadow: 0 2px 10px #bde0fe;
+      font-weight: 600;
+      letter-spacing: .3px;
     }
     .form-action-btns button:hover {
       background: var(--secondary);
+      transform: scale(1.03);
+    }
+    /* Remove Button */
+    .edit-form button[type="button"] {
+      background: var(--danger);
+      color: #fff;
+      border: none;
+      padding: 6px 18px;
+      border-radius: 6px;
+      font-size: 0.97rem;
+      margin: 8px 0 14px 0;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 1px 6px #f1faee;
+    }
+    .edit-form button[type="button"]:hover {
+      background: #c1121f;
     }
     /* Action buttons */
     .bottom-actions {
       display: flex;
-      gap: 18px;
+      gap: 22px;
       justify-content: flex-end;
-      margin-top: 30px;
+      margin-top: 32px;
+      position: relative;
+      z-index: 1;
     }
     .bottom-actions button {
       background: var(--secondary);
       color: #fff;
       border: none;
-      padding: 13px 36px;
+      padding: 15px 38px;
       border-radius: 8px;
-      font-size: 1.1rem;
+      font-size: 1.12rem;
       font-weight: 600;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.18s, box-shadow 0.18s, transform 0.18s;
       box-shadow: 0 2px 8px #e3e3e3;
     }
     .bottom-actions button:hover {
       background: var(--primary);
+      transform: translateY(-3px) scale(1.035);
+      box-shadow: 0 7px 20px #bde0fe;
     }
-    footer {
-      text-align: center;
-      color: #bbb;
-      font-size: 1rem;
-    }
-    @media (max-width: 600px) {
+    /* Responsive */
+    @media (max-width: 700px) {
       .resume-container {
-        padding: 18px 3vw;
+        padding: 20px 2vw;
       }
       .edit-form {
-        padding: 12px 3vw;
+        padding: 10px 2vw;
       }
       .bottom-actions {
         flex-direction: column;
-        gap: 10px;
+        gap: 14px;
         align-items: stretch;
       }
+    }
+    footer {
+      text-align: center;
+      color: #8492a6;
+      font-size: 1rem;
+      margin-top: 30px;
+    }
+    /* Custom select arrow */
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,<svg width='18' height='18' viewBox='0 0 18 18' fill='none' stroke='%23457b9d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 9l3 3 3-3'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 19px 19px;
+      padding-right: 30px !important;
     }
   </style>
 </head>
 <body>
   <div class="resume-container">
+    <div class="project-credit">
+      This project is created from Awanish Singh
+    </div>
     <!-- Resume Edit Form -->
-    <form id="resumeForm" class="edit-form">
+    <form id="resumeForm" class="edit-form" autocomplete="off" spellcheck="false">
       <!-- Header Info -->
       <div class="form-section">
         <div class="form-row">
@@ -236,7 +331,7 @@
       </div>
       <!-- Skills -->
       <div class="form-section">
-        <label for="skills">Skills (comma separated, e.g. HTML:90, CSS:85, JavaScript:70)</label>
+        <label for="skills">Skills <span style="color:#999;font-weight:400;">(comma separated, e.g. HTML:90, CSS:85)</span></label>
         <input type="text" id="skills" placeholder="Skill:Level, ..." required>
       </div>
       <!-- Experience -->
@@ -299,13 +394,24 @@
     </footer>
   </div>
   <script>
-    // Dynamic Fields
+    // Generate year range for select options
+    const currentYear = new Date().getFullYear();
+    function yearOptions(start, end, selectedVal='') {
+      let html = '<option value="">Year</option>';
+      for (let y = end; y >= start; y--) {
+        html += `<option value="${y}"${selectedVal==y?' selected':''}>${y}</option>`;
+      }
+      return html;
+    }
+
+    // Experience/Education/Project dynamic fields
     let experienceCount = 0, educationCount = 0, projectCount = 0;
 
     function addExperience(vals = {}) {
       experienceCount++;
       const div = document.createElement('div');
       div.className = 'exp-item';
+      div.style.marginBottom = '15px';
       div.innerHTML = `
         <div class="form-row">
           <div>
@@ -317,8 +423,17 @@
             <input type="text" name="expCompany${experienceCount}" value="${vals.company || ''}" required>
           </div>
           <div>
-            <label>Duration</label>
-            <input type="text" name="expDuration${experienceCount}" value="${vals.duration || ''}" required>
+            <label>Start Year</label>
+            <select name="expStart${experienceCount}" required>
+              ${yearOptions(currentYear-50, currentYear, vals.start)}
+            </select>
+          </div>
+          <div>
+            <label>End Year</label>
+            <select name="expEnd${experienceCount}" required>
+              <option value="">Present</option>
+              ${yearOptions(currentYear-50, currentYear, vals.end)}
+            </select>
           </div>
         </div>
         <label>Details (comma separated)</label>
@@ -326,11 +441,18 @@
         <button type="button" onclick="this.parentNode.remove()">Remove</button>
       `;
       document.getElementById('experienceInputs').appendChild(div);
+      setTimeout(() => { // animate
+        div.style.transition = "box-shadow 0.3s, transform 0.3s";
+        div.style.boxShadow = "0 2px 10px #ede7f6";
+        div.style.transform = "scale(1.03)";
+        setTimeout(()=>{div.style.boxShadow="";div.style.transform="";},300);
+      }, 100);
     }
     function addEducation(vals = {}) {
       educationCount++;
       const div = document.createElement('div');
       div.className = 'edu-item';
+      div.style.marginBottom = '11px';
       div.innerHTML = `
         <div class="form-row">
           <div>
@@ -343,17 +465,26 @@
           </div>
           <div>
             <label>Year</label>
-            <input type="text" name="eduYear${educationCount}" value="${vals.year || ''}" required>
+            <select name="eduYear${educationCount}" required>
+              ${yearOptions(currentYear-50, currentYear, vals.year)}
+            </select>
           </div>
         </div>
         <button type="button" onclick="this.parentNode.remove()">Remove</button>
       `;
       document.getElementById('educationInputs').appendChild(div);
+      setTimeout(() => {
+        div.style.transition = "box-shadow 0.3s, transform 0.3s";
+        div.style.boxShadow = "0 2px 10px #ede7f6";
+        div.style.transform = "scale(1.03)";
+        setTimeout(()=>{div.style.boxShadow="";div.style.transform="";},280);
+      }, 100);
     }
     function addProject(vals = {}) {
       projectCount++;
       const div = document.createElement('div');
       div.className = 'proj-item';
+      div.style.marginBottom = '9px';
       div.innerHTML = `
         <div class="form-row">
           <div>
@@ -366,6 +497,12 @@
         <button type="button" onclick="this.parentNode.remove()">Remove</button>
       `;
       document.getElementById('projectInputs').appendChild(div);
+      setTimeout(() => {
+        div.style.transition = "box-shadow 0.3s, transform 0.3s";
+        div.style.boxShadow = "0 2px 10px #ede7f6";
+        div.style.transform = "scale(1.03)";
+        setTimeout(()=>{div.style.boxShadow="";div.style.transform="";},250);
+      }, 100);
     }
 
     // Preload one empty field for each
@@ -407,7 +544,9 @@
       const exps = Array.from(expDivs).map(div => {
         const title = div.querySelector('input[name^="expTitle"]').value;
         const company = div.querySelector('input[name^="expCompany"]').value;
-        const duration = div.querySelector('input[name^="expDuration"]').value;
+        const start = div.querySelector('select[name^="expStart"]').value;
+        const end = div.querySelector('select[name^="expEnd"]').value;
+        const duration = start && end ? (end !== "" ? `${start} - ${end}` : `${start} - Present`) : "";
         const details = div.querySelector('input[name^="expDetails"]').value.split(',').map(d => d.trim()).filter(d => d);
         return { title, company, duration, details };
       });
@@ -423,7 +562,7 @@
       const edus = Array.from(eduDivs).map(div => {
         const degree = div.querySelector('input[name^="eduDegree"]').value;
         const institute = div.querySelector('input[name^="eduInstitute"]').value;
-        const year = div.querySelector('input[name^="eduYear"]').value;
+        const year = div.querySelector('select[name^="eduYear"]').value;
         return { degree, institute, year };
       });
       document.getElementById('viewEducation').innerHTML = edus.map(edu => `
