@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>O Level Project - Resume | Created by Awanish Singh</title>
+  <title>O Level Project - Resume Builder | Created by Awanish Singh</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -432,6 +432,20 @@
       color: #b2c7ff;
       background: var(--footer-bg);
     }
+    /* Visit Counter Styling */
+    .visit-counter {
+      margin-top: 12px;
+      font-size: 0.98rem;
+      color: #888da0;
+      letter-spacing: 0.2px;
+      font-weight: 500;
+      display: block;
+      text-align: center;
+      transition: color 0.3s;
+    }
+    body.dark .visit-counter {
+      color: #b2c7ff;
+    }
     /* Custom select arrow */
     select {
       appearance: none;
@@ -453,7 +467,7 @@
   </button>
   <div class="resume-container">
     <div class="project-credit">
-      This project is created by Awanish Singh for educational purposes only.<br>
+      This project is created by Awanish Singh for educational purposes only (O level Project Ayodhya City).<br>
       If you wish to use this project, its code, or any demonstration for your own work, please obtain permission from the owner.
     </div>
     <!-- Resume Edit Form -->
@@ -540,6 +554,7 @@
     </div>
     <footer>
       <p>© 2025 | O Level Project | Created by <strong>Awanish Singh</strong></p>
+      <span class="visit-counter" id="visitCounter"></span>
     </footer>
   </div>
   <script>
@@ -687,6 +702,19 @@
       if (!experienceCount) addExperience();
       if (!educationCount) addEducation();
       if (!projectCount) addProject();
+
+      // VISIT COUNTER CODE
+      // Use localStorage to only count once per session (tab close resets sessionStorage)
+      const counterKey = 'site_visit_counter';
+      // To avoid incrementing on back/forward navigation, use sessionStorage as a flag
+      if (!sessionStorage.getItem('visited')) {
+        let count = parseInt(localStorage.getItem(counterKey) || '0', 10);
+        count++;
+        localStorage.setItem(counterKey, count);
+        sessionStorage.setItem('visited', 'yes');
+      }
+      // Always show count from localStorage
+      document.getElementById('visitCounter').textContent = "Total Visits: " + (localStorage.getItem(counterKey) || '1');
     };
 
     // Resume Data Fill
